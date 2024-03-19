@@ -3,20 +3,20 @@
 #
 FROM alpine:3.19.1 AS git
 WORKDIR /git 
-RUN apk update && apk add git && \
+RUN apk update && apk add git wget && \
     git clone https://github.com/dolevf/graphw00f && \
     git clone https://github.com/assetnote/batchql && \
     git clone https://gitlab.com/dee-see/graphql-path-enum && \
     git clone https://github.com/dolevf/graphql-cop && \
     git clone https://github.com/nicholasaleks/CrackQL && \
     git clone https://github.com/dolevf/nmap-graphql-introspection-nse
-
+    
 
 #
 # Build GraphQL Path Enum.
 #
 FROM rust:1.76.0-slim-bookworm AS graphql-path-enum
-WORKDIR /release
+WORKDIR /output
 COPY --from=git /git/graphql-path-enum ./
 RUN cargo build --release
 
@@ -28,7 +28,7 @@ FROM kalilinux/kali-rolling:arm64
 
 WORKDIR /setup 
 USER root
-COPY --from=graphql-path-enum /release/target/release /opt/graphql-path-enum
+COPY --from=graphql-path-enum /output/target/release /opt/graphql-path-enum
 COPY --from=git \
         /git/nmap-graphql-introspection-nse/graphql-introspection.nse \
         /usr/share/nmap/scripts

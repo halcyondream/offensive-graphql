@@ -3,5 +3,8 @@
 docker image rm offensive-graphql
 docker image rm offensive-graphql-commix
 
-docker image -t offensive-graphql .
-docker image -t offensive-graphql-commix -f Dockerfile_comix .
+docker build -t offensive-graphql .
+
+if [ "$1" == "--build-commix" ]; then
+    docker build -t offensive-graphql-commix -f Dockerfile_commix .
+fi
