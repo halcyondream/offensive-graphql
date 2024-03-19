@@ -1,7 +1,7 @@
 #!/bin/sh
 
-docker image rm blackql-tools
-docker image rm blackql-commix
+docker image rm offensive-graphql
+docker image rm offensive-graphql-commix
 
-docker image -t blackql-tools .
-docker image -t blackql-commix -f Dockerfile_comix .
+docker image -t offensive-graphql .
+docker image -t offensive-graphql-commix -f Dockerfile_comix .

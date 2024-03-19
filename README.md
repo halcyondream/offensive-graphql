@@ -35,11 +35,21 @@ should build.
 For the tools, launch an interactive shell, then use whatever tool you
 want.
 
-    docker run --rm -it blackql-tools
+    docker run --rm -it offensive-graphql
 
-This one is not mean to be interactive, so use the command:
+The Commix image is not mean to be interactive, so use the command:
 
-    docker run --rm blackql-commix [options from manpage]
+    docker run --rm offensive-graphql-commix [options from commix manpage]
+
+# Testing
+
+You can test the Damn Vulnerable GraphQL Application by using the setup
+steps from the official project: 
+[https://github.com/dolevf/Damn-Vulnerable-GraphQL-Application]
+(https://github.com/dolevf/Damn-Vulnerable-GraphQL-Application)
+
+From either *offensive-graphql* image, target the GraphQL endpoint at
+[http://host.docker.internal:5013].
 
 # Caveats
 
@@ -54,7 +64,7 @@ this long name each time.
 For example, within these containers, you can access the DVGA instance
 on your host like:
 
-    http://host.docker.internal:5031
+    http://host.docker.internal:5013
 
 To make this a little easier, the tools ship with an *as-is* Python
 script that identifies the host IP and sets the hosts file accordingly.
