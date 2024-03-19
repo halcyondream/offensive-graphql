@@ -18,7 +18,7 @@ can sometimes lead to unintended behaviors.
 You will also need space for each image:
 
 - *Dockerfile* (main collection): ~600MB
-- *Dockerfile\_commix* (Commix only): ~2.5GB
+- *Dockerfile_commix* (Commix only): ~2.5GB
 
 Run `build.sh` to build both images:
 
@@ -26,9 +26,8 @@ Run `build.sh` to build both images:
 
 On Windows, you may also be able to execute this as a batch script.
 
-You can also build each Dockerfile manually if needed. Use each 
-install command from the script to get an idea of how each image
-should build. 
+You can also build each Dockerfile manually if needed. Use each install
+command from the script to get an idea of how each image should build.
 
 # Usage
 
@@ -44,9 +43,11 @@ The Commix image is not mean to be interactive, so use the command:
 # Testing
 
 You can test the Damn Vulnerable GraphQL Application by using the setup
-steps from the official project: https://github.com/dolevf/Damn-Vulnerable-GraphQL-Application
+steps from the official project:
+https://github.com/dolevf/Damn-Vulnerable-GraphQL-Application
 
-From either *offensive-graphql* image, target the GraphQL endpoint at http://host.docker.internal:5013.
+From either *offensive-graphql* image, target the GraphQL endpoint at
+http://host.docker.internal:5013.
 
 # Caveats
 
