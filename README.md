@@ -44,9 +44,13 @@ The Commix image is not mean to be interactive, so use the command:
 # Testing
 
 You can test the Damn Vulnerable GraphQL Application by using the setup
-steps from the official project: https://github.com/dolevf/Damn-Vulnerable-GraphQL-Application
+steps from the official project: 
+https://github.com/dolevf/Damn-Vulnerable-GraphQL-Application
 
-From either *offensive-graphql* image, target the GraphQL endpoint at http://host.docker.internal:5013.
+Run the application on your host.
+
+Then, from either *offensive-graphql* image, target the GraphQL endpoint at 
+http://host.docker.internal:5013.
 
 # Caveats
 
