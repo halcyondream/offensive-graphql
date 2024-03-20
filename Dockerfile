@@ -1,7 +1,7 @@
 #
 # Fetch repositories.
 #
-FROM alpine:3.19.1 AS git
+FROM --platform=linux/arm64 alpine:3.19.1 AS git
 WORKDIR /git 
 RUN apk update && apk add git wget && \
     git clone https://github.com/dolevf/graphw00f && \
@@ -15,7 +15,7 @@ RUN apk update && apk add git wget && \
 #
 # Build GraphQL Path Enum.
 #
-FROM rust:1.76.0-slim-bookworm AS graphql-path-enum
+FROM --platform=linux/arm64 rust:1.76.0-slim-bookworm AS graphql-path-enum
 WORKDIR /output
 COPY --from=git /git/graphql-path-enum ./
 RUN cargo build --release
@@ -24,7 +24,7 @@ RUN cargo build --release
 #
 # Set up the interactive system.
 #
-FROM kalilinux/kali-rolling:arm64
+FROM --platform=linux/arm64 kalilinux/kali-rolling:arm64
 
 WORKDIR /setup 
 USER root
