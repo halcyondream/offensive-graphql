@@ -31,6 +31,7 @@ USER root
 COPY --from=graphql-path-enum /output/target/release /opt/graphql-path-enum
 COPY --from=git /git/ /opt
 COPY gethost.py /opt
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update && \
     apt-get -y install --no-install-recommends \
         python3 sudo python3-pip nmap curl bind9-dnsutils nano && \
