@@ -37,9 +37,11 @@ want.
 
     docker run --rm -it offensive-graphql
 
-The Commix image is not mean to be interactive, so use the command:
+The Commix and Eyewitness images are not mean to be interactive, so use 
+the command:
 
-    docker run --rm offensive-graphql-commix [options from commix manpage]
+    docker run --rm commix [options from commix manpage]
+    docker run --rm eyewitness [options from commix manpage]
 
 # Testing
 
