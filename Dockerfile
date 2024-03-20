@@ -36,7 +36,7 @@ RUN apt-get update && \
     useradd --create-home kali && \
     echo "kali:kali" | chpasswd && \
     usermod -aG sudo kali && \
-    cp /opt/nmap-graphql-introspection-nse/nmap-graphql-introspection.nse \
+    cp /opt/nmap-graphql-introspection-nse/graphql-introspection.nse \
         /usr/share/nmap/scripts && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*

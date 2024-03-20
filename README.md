@@ -3,8 +3,9 @@
 Bundle GraphQL security testing tools from “Black Hat GraphQL” in two
 Docker images.
 
-Most of the tools are in the main Dockerfile. The commix image is
-standalone because it relies on the entire Metasploit Framework, so the
+Most of the tools are in the main Dockerfile. The commix and eyewitness 
+images are
+standalone; commix relies on the entire Metasploit Framework, so the
 resultant image is massive by comparison (over 2GB). All GUI tools are
 not bundled at all, so you will need to use your host OS or another
 means to run them.
@@ -20,11 +21,13 @@ You will also need space for each image:
 - *Dockerfile* (main collection): ~600MB
 - *Dockerfile\_commix* (Commix only): ~2.5GB
 
-Run `build.sh` to build both images:
+Run `build.sh` to build only the tools
 
     ~$ bash build.sh
 
-On Windows, you may also be able to execute this as a batch script.
+To build all images:
+
+    ~$ bash build.sh --all
 
 You can also build each Dockerfile manually if needed. Use each 
 install command from the script to get an idea of how each image
