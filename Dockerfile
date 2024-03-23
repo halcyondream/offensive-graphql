@@ -1,7 +1,7 @@
 #
 # Fetch repositories.
 #
-FROM --platform=linux/arm64 alpine:3.19.1 AS git
+FROM alpine:3.19.1 AS git
 WORKDIR /git 
 RUN apk update && apk add git wget && \
     git clone https://github.com/dolevf/graphw00f && \
@@ -15,7 +15,7 @@ RUN apk update && apk add git wget && \
 #
 # Build GraphQL Path Enum.
 #
-FROM --platform=linux/arm64 rust:1.76.0-slim-bookworm AS graphql-path-enum
+FROM rust:1.76.0-slim-bookworm AS graphql-path-enum
 WORKDIR /output
 COPY --from=git /git/graphql-path-enum ./
 RUN cargo build --release
@@ -24,7 +24,7 @@ RUN cargo build --release
 #
 # Set up the interactive system.
 #
-FROM --platform=linux/arm64 kalilinux/kali-rolling:arm64
+FROM kalilinux/kali-rolling:latest
 
 WORKDIR /setup 
 USER root
@@ -34,7 +34,7 @@ COPY gethost.py /opt
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update && \
     apt-get -y install --no-install-recommends \
-        python3 sudo python3-pip nmap curl bind9-dnsutils nano && \
+        python3 sudo python3-pip nmap curl bind9-dnsutils nano file && \
     useradd --create-home kali && \
     echo "kali:kali" | chpasswd && \
     usermod -aG sudo kali && \
@@ -47,7 +47,8 @@ RUN apt-get update && \
 WORKDIR /home/kali
 USER kali
 RUN pip3 install --no-cache-dir clairvoyance && \
-    pip3 install --no-cache-dir inql && \
+    # Note: InQL version 5.0+ is only a Burp add-on...
+    pip3 install --no-cache-dir inql==4.0.4 && \
     pip3 install --no-cache-dir -r /opt/graphql-cop/requirements.txt && \
     pip3 install --no-cache-dir -r /opt/CrackQL/requirements.txt && \
     mkdir tools && \
